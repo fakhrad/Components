@@ -1,0 +1,25 @@
+{
+  "name": "app-sdk-components",
+  "version": "1.0.0",
+  "description": "public components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saeedPadyab/Components.git"
+  },
+  "keywords": [
+    "public",
+    "react",
+    "native",
+    "components"
+  ],
+  "author": "saeed padyab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saeedPadyab/Components/issues"
+  },
+  "homepage": "https://github.com/saeedPadyab/Components#readme"
+}
