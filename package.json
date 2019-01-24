@@ -1,10 +1,13 @@
 {
-  "name": "app-sdk-components",
-  "version": "1.0.1",
+  "name": "@app-sdk/components",
+  "version": "1.0.2",
   "description": "public components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
