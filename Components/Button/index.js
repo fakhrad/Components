@@ -1,9 +1,10 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import {themeManager} from "@app-sdk/services";
 
 // get default style .  it is respomsible to set default values from theme if user did not set them
 const ButtonComponent = ({ children, ...props }) => {
-  let theme = this.props.getCurrentTheme();
+  let theme = themeManager.getAppTheme();
   var myStyle = {};
   let style = props.style;
   if (style == undefined || style.backgroundColor == undefined) {

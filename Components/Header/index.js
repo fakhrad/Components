@@ -1,7 +1,8 @@
 import React from "react";
 import { View } from "react-native";
+import { themeManager } from "@app-sdk/services";
 function getDefaultStyle(props) {
-    let theme= props.getCurrentTheme();
+    let theme= themeManager.getAppTheme();
     let style = props.style;
     let myStyle = {};
     if (style != undefined) {

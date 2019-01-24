@@ -1,9 +1,8 @@
 import React from "react";
 import { TextInput } from "react-native";
-import { appConfig } from "../../config/config";
 const Input = ({ children, ...props }) => {
   var myStyle = {
-    textAlign: props.getCurrentLayout() == "ltr" ? "left" : "right"
+    textAlign:"right"
   };
   return <TextInput {...props} style={[myStyle, props.style]} />;
 };

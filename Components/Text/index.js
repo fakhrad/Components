@@ -1,8 +1,8 @@
 import React from "react";
 import { Text } from "react-native";
-import { appConfig } from "./../../config/config";
+import { themeManager } from "@app-sdk/services";
 const TextComponent = ({ children, ...props }) => {
-  var currentTheme = props.getCurrentTheme();
+  var currentTheme = themeManager.getAppTheme();
   var myStyle = {
     fontFamily: currentTheme.$fontFamily1
   };

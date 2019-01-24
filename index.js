@@ -5,7 +5,6 @@ import Container from "./Components/Container";
 import Header from "./Components/Header";
 import Text from "./Components/Text";
 import Image from "./Components/Image";
-import BackButton from "./Components/BackButton";
 import ModalContainer from "./Components/ModalContainer";
 import ScrollView from "./Components/ScrollView";
 import Switch from "./Components/Switch";
@@ -20,7 +19,6 @@ export {
     Header,
     Text,
     Image,
-    BackButton,
     ModalContainer,
     ScrollView,
     Input,
