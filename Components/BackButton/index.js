@@ -4,9 +4,6 @@ import Button from "./../Button";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { appConfig } from "./../../config/config";
 import EStyleSheet from "react-native-extended-stylesheet";
-function getDefaultStyle(props) {
-  return myStyle;
-}
 const BackButton = ({ children, ...props }) => {
   backNavigate = p => {
     const navType = p["navType"];

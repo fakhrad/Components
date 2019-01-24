@@ -1,12 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { appConfig } from "../../config/config";
-import theme from "./../../themes/theme1";
-// let theme;
-// System.import("./../../themes/" + appConfig.APP_THEME).then(function (m) {
-//     theme = m;
-// });;
 function getDefaultStyle(props) {
+    let theme= props.getCurrentTheme();
     let style = props.style;
     let myStyle = {};
     if (style != undefined) {

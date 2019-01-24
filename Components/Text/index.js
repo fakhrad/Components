@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 import { appConfig } from "./../../config/config";
 const TextComponent = ({ children, ...props }) => {
-  var currentTheme = appConfig.getCurrentTheme();
+  var currentTheme = props.getCurrentTheme();
   var myStyle = {
     fontFamily: currentTheme.$fontFamily1
   };

@@ -1,9 +1,8 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
-import { appConfig } from "../../config/config";
 
 const Spinner = ({ children, ...props }) => {
-  let theme = appConfig.getCurrentTheme();
+  let theme = props.getCurrentTheme();
   if ({ ...props }.show == undefined || { ...props }.show == false) {
     return null;
   }

@@ -1,17 +1,17 @@
-import Button from "./Button";
-import Input from './Input'
-import Spinner from "./Spinner";
-import Container from "./Container";
-import Header from "./Header";
-import Text from "./Text";
-import Image from "./Image";
-import BackButton from "./BackButton";
-import ModalContainer from "./ModalContainer";
-import ScrollView from "./ScrollView";
-import Switch from "./Switch";
-import ChooseCity from "./ChooseCity";
-import PhoneNumberInput from "./PhoneNumberInput";
-import FlatList from "./FlatList";
+import Button from "./Components/Button";
+import Input from "./Components/Input";
+import Spinner from "./Components/Spinner";
+import Container from "./Components/Container";
+import Header from "./Components/Header";
+import Text from "./Components/Text";
+import Image from "./Components/Image";
+import BackButton from "./Components/BackButton";
+import ModalContainer from "./Components/ModalContainer";
+import ScrollView from "./Components/ScrollView";
+import Switch from "./Components/Switch";
+import ChooseCity from "./Components/ChooseCity";
+import PhoneNumberInput from "./Components/PhoneNumberInput";
+import FlatList from "./Components/FlatList";
 
 export {
     Button,
