@@ -8,7 +8,6 @@ import Image from "./Components/Image";
 import ModalContainer from "./Components/ModalContainer";
 import ScrollView from "./Components/ScrollView";
 import Switch from "./Components/Switch";
-import ChooseCity from "./Components/ChooseCity";
 import PhoneNumberInput from "./Components/PhoneNumberInput";
 import FlatList from "./Components/FlatList";
 
@@ -23,7 +22,6 @@ export {
     ScrollView,
     Input,
     Switch,
-    ChooseCity,
     PhoneNumberInput,
     FlatList
 };
