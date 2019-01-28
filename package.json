@@ -1,6 +1,6 @@
 {
   "name": "@app-sdk/components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "public components",
   "main": "index.js",
   "scripts": {
