@@ -10,6 +10,7 @@ import ScrollView from "./Components/ScrollView";
 import Switch from "./Components/Switch";
 import PhoneNumberInput from "./Components/PhoneNumberInput";
 import FlatList from "./Components/FlatList";
+import NavigateButton from "./Components/NavigateButton"
 
 export {
     Button,
@@ -23,5 +24,6 @@ export {
     Input,
     Switch,
     PhoneNumberInput,
-    FlatList
+    FlatList,
+	NavigateButton
 };
