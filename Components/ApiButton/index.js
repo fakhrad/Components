@@ -1,7 +1,7 @@
 import React from "react";
-import { TouchableOpacity, Alert } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Spinner from "./../Spinner";
-import { themeManager, stateManager } from "@app-sdk/services";
+import { themeManager, stateManager, apiManager } from "@app-sdk/services";
 
 export default class ApiButton extends React.PureComponent {
   constructor(props) {
@@ -13,51 +13,86 @@ export default class ApiButton extends React.PureComponent {
     if (!stateManager.instance.isDirty()) {
       this.setState({ spinner: true });
       var formContent = stateManager.instance.lastState;
-      this.props
-        .action(formContent)
+      const func = apiManager.instance.get(
+        this.props.action["api"],
+        this.props.action["func"]
+      );
+      if (!func) {
+        console.log(
+          "Fucntion Not Found!",
+          this.props.action["api"],
+          this.props.action["func"]
+        );
+        return;
+      }
+      func(formContent)
         .then(result => {
           this.setState({ spinner: false });
           const status = result.status;
           if (status == 200) {
             if (this.props.onOk) {
               result.json().then(res => {
-                this.props.onOk(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.onOk(obj);
               });
             }
           }
           if (status == 201) {
             if (this.props.onCreated) {
               result.json().then(res => {
-                this.props.onCreated(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.onCreated(obj);
               });
             }
           } else if (status == 400) {
             if (this.props.onBadRequest) {
               result.json().then(res => {
-                this.props.onBadRequest(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.onBadRequest(obj);
               });
             }
           } else if (status == 500) {
             if (this.props.onServerError) {
               result.json().then(res => {
-                this.props.onServerError(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.onServerError(obj);
               });
             }
           } else if (status == 404) {
             if (this.props.notFound) {
               result.json().then(res => {
-                this.props.notFound(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.notFound(obj);
               });
             }
           } else if (status == 401) {
             if (this.props.unAuthorized) {
               result.json().then(res => {
-                this.props.unAuthorized(res);
+                const obj = {
+                  inputs: stateManager.instance.lastState,
+                  outputs: res
+                };
+                this.props.unAuthorized(obj);
               });
             }
           }
         })
-        .catch(error => { });
+        .catch(error => {});
     }
   };
   render() {
