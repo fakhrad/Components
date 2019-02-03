@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Alert } from "react-native";
 import Spinner from "./../Spinner";
 import { themeManager, stateManager, apiManager } from "@app-sdk/services";
 
@@ -11,6 +11,7 @@ export default class ApiButton extends React.PureComponent {
   }
   callApi = () => {
     if (!stateManager.instance.isDirty()) {
+      debugger
       this.setState({ spinner: true });
       var formContent = stateManager.instance.lastState;
       const func = apiManager.instance.get(
@@ -23,7 +24,7 @@ export default class ApiButton extends React.PureComponent {
           this.props.action["api"],
           this.props.action["func"]
         );
-        return;
+        return
       }
       func(formContent)
         .then(result => {
@@ -92,7 +93,7 @@ export default class ApiButton extends React.PureComponent {
             }
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     }
   };
   render() {
