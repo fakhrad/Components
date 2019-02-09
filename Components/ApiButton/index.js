@@ -10,10 +10,8 @@ export default class ApiButton extends React.PureComponent {
     this.callApi = this.callApi.bind(this);
   }
   callApi = () => {
-    if (!stateManager.instance.isDirty()) {
-      debugger
-      this.setState({ spinner: true });
-      var formContent = stateManager.instance.lastState;
+    if (!stateManager.instance().isDirty() && this.props.action) {
+      var formContent = stateManager.instance().lastState();
       const func = apiManager.instance.get(
         this.props.action["api"],
         this.props.action["func"]
@@ -24,76 +22,77 @@ export default class ApiButton extends React.PureComponent {
           this.props.action["api"],
           this.props.action["func"]
         );
-        return
+        return;
       }
-      func(formContent)
-        .then(result => {
+      this.setState({ spinner: true });
+      let f = func();
+      if (f.onOk)
+        f.onOk(result => {
           this.setState({ spinner: false });
-          const status = result.status;
-          if (status == 200) {
-            if (this.props.onOk) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.onOk(obj);
-              });
-            }
+          if (this.props.onOk) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.onOk(obj);
           }
-          if (status == 201) {
-            if (this.props.onCreated) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.onCreated(obj);
-              });
-            }
-          } else if (status == 400) {
-            if (this.props.onBadRequest) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.onBadRequest(obj);
-              });
-            }
-          } else if (status == 500) {
-            if (this.props.onServerError) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.onServerError(obj);
-              });
-            }
-          } else if (status == 404) {
-            if (this.props.notFound) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.notFound(obj);
-              });
-            }
-          } else if (status == 401) {
-            if (this.props.unAuthorized) {
-              result.json().then(res => {
-                const obj = {
-                  inputs: stateManager.instance.lastState,
-                  outputs: res
-                };
-                this.props.unAuthorized(obj);
-              });
-            }
+        });
+      if (f.onCreated)
+        f.onCreated(result => {
+          this.setState({ spinner: false });
+          if (this.props.onCreated) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.onCreated(obj);
           }
-        })
-        .catch(error => { });
+        });
+      if (f.onBadRequest)
+        f.onBadRequest(result => {
+          this.setState({ spinner: false });
+          if (this.props.onBadRequest) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.onBadRequest(obj);
+          }
+        });
+      if (f.notFound)
+        f.notFound(result => {
+          this.setState({ spinner: false });
+          if (this.props.notFound) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.notFound(obj);
+          }
+        });
+      if (f.onServerError)
+        f.onServerError(result => {
+          this.setState({ spinner: false });
+          if (this.props.onServerError) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.onServerError(obj);
+          }
+        });
+      if (f.unAuthorized)
+        f.unAuthorized(result => {
+          this.setState({ spinner: false });
+          if (this.props.unAuthorized) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.unAuthorized(obj);
+          }
+        });
+      if (f.call) f.call(formContent);
     }
   };
   render() {

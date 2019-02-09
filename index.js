@@ -11,6 +11,8 @@ import PhoneNumberInput from "./Components/PhoneNumberInput";
 import FlatList from "./Components/FlatList";
 import NavigateButton from "./Components/NavigateButton";
 import ApiButton from "./Components/ApiButton";
+import BaseComponent from "./Components/BaseComponent";
+import StringInput from "./Components/StringInput";
 
 export {
   Button,
@@ -26,4 +28,6 @@ export {
   FlatList,
   NavigateButton,
   ApiButton,
+  BaseComponent,
+  StringInput
 };
