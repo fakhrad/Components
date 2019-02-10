@@ -18,6 +18,15 @@ export default class BaseComponent extends React.Component {
     restart() {
         RNRestart.Restart();
     }
+    notifySuccess(text) {
+        this.props.notify("success", text);
+    }
+    notifyError(text) {
+        this.props.notify("error", text);
+    }
+    notifyWarning(text) {
+        this.props.notify("warning", text);
+    }
     alert(
         title = "Title",
         description = "",

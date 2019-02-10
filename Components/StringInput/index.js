@@ -3,30 +3,34 @@ import Input from "../Input";
 import { stateManager } from "@app-sdk/services";
 
 export default class StringInput extends React.Component {
-    constructor(props) {
-        super(props);
-        if (props.bind) {
-            stateManager.instance().bindComponentToForm(props.bind);
-        }
+  constructor(props) {
+    super(props);
+    if (props.bind) {
+      stateManager.instance().bindComponentToForm(props.bind);
+      if (props.defaultValue) {
+        stateManager.instance().setValue(props.bind, props.defaultValue);
+        stateManager.instance().setDirty(props.bind, false);
+      }
     }
-    handleTextChanged = text => {
-        if (this.props.isRequired) {
-            if (text.length == 0) {
-                stateManager.instance().setDirty(this.props.bind, true);
-            } else {
-                stateManager.instance().setValue(this.props.bind, text);
-                stateManager.instance().setDirty(this.props.bind, false);
-            }
-        } else {
-            stateManager.instance().setValue(this.props.bind, text);
-        }
-    };
-    render() {
-        return (
-            <Input
-                {...this.props}
-                onChangeText={this.props.bind ? this.handleTextChanged : undefined}
-            />
-        );
+  }
+  handleTextChanged = text => {
+    if (this.props.isRequired) {
+      if (text.length == 0) {
+        stateManager.instance().setDirty(this.props.bind, true);
+      } else {
+        stateManager.instance().setValue(this.props.bind, text);
+        stateManager.instance().setDirty(this.props.bind, false);
+      }
+    } else {
+      stateManager.instance().setValue(this.props.bind, text);
     }
+  };
+  render() {
+    return (
+      <Input
+        {...this.props}
+        onChangeText={this.props.bind ? this.handleTextChanged : undefined}
+      />
+    );
+  }
 }

@@ -5,7 +5,11 @@ export default class PhoneNumberInput extends React.Component {
   constructor(props) {
     super(props);
     if (props.bind) {
-      stateManager.instance.bindComponentToForm(props.bind);
+      stateManager.instance().bindComponentToForm(props.bind);
+      if (props.defaultValue) {
+        stateManager.instance().setValue(props.bind, props.defaultValue);
+        stateManager.instance().setDirty(props.bind, false);
+      }
     }
   }
   validatePhoneNumber = phoneNumber => {
@@ -15,17 +19,17 @@ export default class PhoneNumberInput extends React.Component {
   onChangeText = phone => {
     if (this.props.isRequired) {
       if (phone.length == 0) {
-        stateManager.instance.setDirty(this.props.bind, true);
+        stateManager.instance().setDirty(this.props.bind, true);
       } else {
         if (!this.validatePhoneNumber(phone)) {
-          stateManager.instance.setDirty(this.props.bind, true);
+          stateManager.instance().setDirty(this.props.bind, true);
         } else {
-          stateManager.instance.setValue(this.props.bind, phone);
-          stateManager.instance.setDirty(this.props.bind, false);
+          stateManager.instance().setValue(this.props.bind, phone);
+          stateManager.instance().setDirty(this.props.bind, false);
         }
       }
     } else {
-      stateManager.instance.setValue(this.props.bind, phone);
+      stateManager.instance().setValue(this.props.bind, phone);
     }
   };
   render() {

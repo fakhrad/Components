@@ -92,6 +92,17 @@ export default class ApiButton extends React.PureComponent {
             this.props.unAuthorized(obj);
           }
         });
+      if (f.onConnectionError)
+        f.onConnectionError(result => {
+          this.setState({ spinner: false });
+          if (this.props.onConnectionError) {
+            const obj = {
+              inputs: stateManager.instance().lastState(),
+              outputs: result
+            };
+            this.props.onConnectionError(obj);
+          }
+        });
       if (f.call) f.call(formContent);
     }
   };
