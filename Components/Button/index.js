@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Platform} from "react-native";
 import { themeManager } from "@app-sdk/services";
 
 // get default style .  it is respomsible to set default values from theme if user did not set them
@@ -16,6 +16,14 @@ const ButtonComponent = ({ children, ...props }) => {
   if (style == undefined || style.alignItems == undefined)
     myStyle["alignItems"] = "center";
 
+  if (Platform.OS === "android") {
+    if (Platform.Version < 21) {
+      if (style != undefined && style.elevation != undefined) {
+        myStyle["borderColor"] = "lightgray";
+        myStyle["borderWidth"] = 2;
+      }
+    }
+  }
   return (
     <TouchableOpacity {...props} style={[myStyle, props.style]}>
       {children}

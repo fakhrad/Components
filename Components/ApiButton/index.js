@@ -3,7 +3,7 @@ import { TouchableOpacity, Alert } from "react-native";
 import Spinner from "./../Spinner";
 import { themeManager, stateManager, apiManager } from "@app-sdk/services";
 
-export default class ApiButton extends React.PureComponent {
+export default class ApiButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = { spinner: false };
